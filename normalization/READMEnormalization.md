@@ -10,4 +10,4 @@ Converters is a collection of tools that the normalizers call to form their spec
 
 The normalize scripts call these converters.
 
-Note that there are a few dat files and csv's in this folder. The scripts following from the normalize.R script call upon these sets.
+Note that there are a few data files and csv's in this folder. The scripts following from the normalize.R script call upon these sets.
