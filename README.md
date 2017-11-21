@@ -3,7 +3,7 @@
  
  This project normalizes the text contained in the en_test.csv (see "data" below).
 
-This project will be partitioned in the following way: Data, indicators.finders.guesses, classification, normalization, and converters. To better organize the body of files, Data and indicators.finders.guesses are in the .data.indicators.finders.guesses folder etc.
+This project will be partitioned in the following way: Data, indicators.finders.guesses, classification, normalization, and converters. To better organize the body of files, Data and indicators.finders.guesses are in the classification folder, normalization and converter files are in the normalization folder.
 
 All data stems from the initial training and testing data sets provided by the Kaggle website. Programs that engineer data from these initial sources will be consolidated and posted. For now the resulting "caches" will be provided for download. Download the initial data sets:
 
