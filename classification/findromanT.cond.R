@@ -1,6 +1,5 @@
 #!/bin/Rscript        
         
 if(tst$before[i] %in% ROMANNUMERALS){
-    tst$rommaybeT[i]=1
-                
-    } 
+  tst$rommaybeT[i]=1
+} 

@@ -1,8 +1,6 @@
 #!/bin/Rscript
 
 #build cache for integers, "CARDINAL"  "DATE"      "DIGIT"     "DECIMAL"   "TELEPHONE"
-
-
 n<-nrow(tst)
 
 load("cachecardint0F")
@@ -27,7 +25,5 @@ tst$intmaybe0FT[tst$token_id==0&grepl("^[0-9]+$",tst$before)&grepl("^0[0-9]+$",t
 #print(i)
 #i=i+1
 #}
-
-
 
 source("findinteger02FT.R")

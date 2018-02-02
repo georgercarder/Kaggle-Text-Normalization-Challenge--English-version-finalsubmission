@@ -2,7 +2,6 @@
 
 #head(trn$before[!grepl("DC|ID|CD|DVD",trn$before)&grepl("^I\\.$|^I's$|[XV]th$|IInd$|^[ICDMVX]{2,}$",trn$before)])
 
-
 n<-nrow(trn)
 romanoptionI<-data.frame(rep(0,n),rep(0,n),rep(0,n),rep(0,n))
 romanguessI<-rep("",n)
@@ -25,17 +24,14 @@ roms<-c("CARDINAL","LETTERS","ORDINAL","PLAIN")
 tst$rommaybeIT[tst$before=="I"]=1
 print("initialized")
 
-
 i=1
 
 while(i<=n){
-   if(tst$rommaybeIT[i]==1){
-     
-        source("findromanguessIT.R")
-     
-   }
-print(i)
-i=i+1
+  if(tst$rommaybeIT[i]==1){
+    source("findromanguessIT.R")
+  }
+  print(i)
+  i=i+1
 }
 
 trn$romanguessIT<-romanguessIT

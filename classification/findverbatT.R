@@ -7,7 +7,6 @@ verbmaybeT<-rep("",n)
 tst$no_singlesT<-no_singlesT
 tst$verbmaybeT<-verbmaybeT
 
-
 tst$no_singlesT[!grepl("^[a-zA-Z0-9]$",tst$before)]=1
 
 #i=1
@@ -23,7 +22,4 @@ tst$no_singlesT[!grepl("^[a-zA-Z0-9]$",tst$before)]=1
 verbmaybeT<-tst$verbmaybeT
 save(verbmaybeT,file="verbmaybeT")
 rm(verbmaybeT)
-
-
-
 

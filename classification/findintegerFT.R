@@ -2,7 +2,6 @@
 
 #build cache for integers, "CARDINAL"  "DATE"      "DIGIT"     "DECIMAL"   "TELEPHONE"
 
-
 n<-nrow(tst)
 
 load("cachecardintF")
@@ -23,8 +22,5 @@ tst$intmaybeFT<-rep("",n)
 #print(i)
 #i=i+1
 #}
-
-
-
 
 source("findinteger2FT.R")

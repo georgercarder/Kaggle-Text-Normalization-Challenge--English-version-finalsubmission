@@ -12,12 +12,8 @@ romanguessT<-rep("",n)
 #1049/6170 ordinal
 #431/6170 plain
 
-
 romprobs<-c(3602/6170,1088/6170,1049/6170,431/6170)
 roms<-c("CARDINAL","LETTERS","ORDINAL","PLAIN")
-
-
-
 
 ##parallel alternative
 #findroman2<-function(i){
@@ -33,15 +29,12 @@ roms<-c("CARDINAL","LETTERS","ORDINAL","PLAIN")
 i=1
 
 while(i<=n){
-   if(tst$rommaybeT[i]==1){
-     
-        source("findromanguessT.R")
-     
-   }
-print(i)
-i=i+1
+  if(tst$rommaybeT[i]==1){
+    source("findromanguessT.R")
+  }
+  print(i)
+  i=i+1
 }
 
 save(romanguessT,file="romanguessT")
-
 

@@ -20,19 +20,15 @@ n<-nrow(tst)
 to.indicatorT<-rep(0,n)
 #clersses<-""
 
-
 nermbs<-c("DATE","CARDINAL","DECIMAL","MEASURE","MONEY","ORDINAL","TIME","DIGIT","FRACTION")
 
 i=2
 while(i<=(n-1)){
-
-
-    if(grepl("^-$|^:$",tst$before[i])&((tst$Classs[i+1] %in% nermbs)&(tst$Classs[i-1] %in% nermbs))){
-        to.indicatorT[i]=1   
-    }
-
-print(i)
-i=i+1
+  if(grepl("^-$|^:$",tst$before[i])&((tst$Classs[i+1] %in% nermbs)&(tst$Classs[i-1] %in% nermbs))){
+    to.indicatorT[i]=1   
+  }
+  print(i)
+  i=i+1
 }
 
 tst$to.indicatorT<-to.indicatorT

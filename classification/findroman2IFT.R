@@ -2,11 +2,9 @@
 
 #head(trn$before[!grepl("DC|ID|CD|DVD",trn$before)&grepl("^I\\.$|^I's$|[XV]th$|IInd$|^[ICDMVX]{2,}$",trn$before)])
 
-
 n<-nrow(tst)
 romanoptionIFT<-data.frame(rep(0,n),rep(0,n),rep(0,n),rep(0,n))
 romanguessIFT<-rep("",n)
-
 
 d<-nrow(trn[trn$token_id==0&trn$before=="I",])
 c<-nrow(trn[trn$token_id==0&trn$before=="I"&trn$class=="CARDINAL",])
@@ -29,8 +27,6 @@ tst$romanguessIFT<-NULL
 
 print("initialized")
 
-
-
 #i=1
 
 #while(i<=n){
@@ -44,5 +40,4 @@ print("initialized")
 #}
 
 #trn$romanguessIF<-romanguessIF
-
 

@@ -24,6 +24,4 @@ tst$rommaybeFT<-rep("",n)
 #i=i+1
 #}
 
-
-
 source("findromanF2T.R")

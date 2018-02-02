@@ -2,7 +2,6 @@
 
 #build cache for integers, "CARDINAL"  "DATE"      "DIGIT"     "DECIMAL"   "TELEPHONE"
 
-
 n<-nrow(tst)
 
 load("cachecardint0")
@@ -24,6 +23,5 @@ tst$intmaybe0T[grepl("^0[0-9]+$",tst$before)&grepl("^[0-9]+$",tst$before)]=1
 #print(i)
 #i=i+1
 #}
-
 
 source("findinteger02T.R")

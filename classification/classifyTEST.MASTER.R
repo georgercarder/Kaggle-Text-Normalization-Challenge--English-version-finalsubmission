@@ -78,7 +78,6 @@ tst$Classs[tst$Classs==""&tst$before!="-"&tst$before!=":"&grepl("^[ 0][0-9]-[ 01
 
 tst$dasherdate<-NULL
 
-
 tst$Classs[tst$Classs==""&tst$before!="-"&tst$before!=":"&grepl("[0-9]",tst$before)&grepl("january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec|sunday|monday|tuesday|wednesday|thursday|friday|saturday",tolower(tst$before))]="DATE"
 
 #dateindicator.TEST.R
@@ -90,7 +89,6 @@ rm(probdatevectT)
 tst$Classs[tst$Classs==""&tst$before!="-"&tst$before!=":"&tst$probdatevectT==1&grepl("^[ 012][0-9]{3}$",tst$before)&!(tst$before %in% 2000:2009)]="DATE"
 
 tst$probdatevectT<-NULL
-
 
 print("'DATE' is classified")
 
@@ -120,7 +118,6 @@ tst$romanguessIFT<-NULL
 tst$romanguessXT<-NULL
 tst$romanguessXFT<-NULL
 
-
 print("classified the various roman tokens")
 
 print("classifying 'TELEPHONE'")
@@ -135,7 +132,6 @@ tst$Classs[grepl("^911$|^999$",tst$before)&tst$emrgncyT==1]="TELEPHONE"
 print("911 and 999 are classified")
 
 tst$emrgncyT<-NULL
-
 
 print("now we classify the remainder of the telephone numbers")
 tst$Classs[tst$Classs==""&tst$before!="-"&tst$before!=":"&(grepl("^1-800",tst$before)|(!grepl("\\.|,|[a-zA-Z]|^-|-$",tst$before)&nchar(sub(" ","",tst$before))>3&!(sub(" ","",tst$before) %in% 1:999999)&grepl("[0-9]",tst$before)&grepl("^0| |-|\\(",tst$before)))]="TELEPHONE"
@@ -155,10 +151,7 @@ print("'VERBATIM IS CLASSIFIED'")
 
 tst$verbmaybeT<-NULL
 
-
 print("we classify the integers")
-
-
 
 load("intguessT")###    ran 11/14
 load("intguessFT")###   ran 11/14
@@ -182,9 +175,6 @@ tst$intguessFT<-NULL
 tst$intguess0T<-NULL
 tst$intguess0FT<-NULL
 
-
-
-
 print("Classifying '-' and ':' as 'to' where appropriate...")
 print("....................................................")
 
@@ -207,7 +197,6 @@ print("classified '-' and ':' to 'to' where appropriate")
 
 tst$to.indicatorT<-NULL
 
-
 print("remember, classifyinf -/to/: correctly does not")
 print("align with the classes set forth by the training set")
 
@@ -222,13 +211,10 @@ tst$Classs[tst$Classs==""&tst$romanguessPERT!=""]=tst$romanguessPERT[tst$romangu
 
 tst$romanguessPERT<-NULL
 
-
 tst$Classs[tst$Classs==""&grepl("^([A-Z]\\.){2,}$",tst$before)]="LETTERS"
 ###NEED MORE FOR LETTERS
 print("remember, classifyinf -/to/: correctly does not")
 print("align with the classes set forth by the training set")
-
-
 
 #############CLEAN UP ROUND
 print("we classify the loose ends....")
@@ -280,7 +266,6 @@ tst$isroyalromanT<-NULL
 
 tst$Classs[tst$Classs==""&grepl("[0-9] BC\\.$|[0-9] BC,$|[0-9] B\\.C$|[0-9] BCE,$|[0-9] A\\.D$",tst$before)]="DATE"
 
-
 source("buildroman.R")
 load("ROMANNUMERALS")
 #load("rm") # on second laptop/thumbdrive
@@ -295,9 +280,6 @@ rm3<-(rm$before[rm$class=="ORDINAL"])
 tst$Classs[tst$Classs==""&(tst$before %in% rm1)]="LETTERS"
 tst$Classs[tst$Classs==""&(tst$before %in% rm2)]="PLAIN"
 tst$Classs[tst$Classs==""&(tst$before %in% rm3)]="ORDINAL"
-
-
-
 
 #######################
 #######################
@@ -339,7 +321,6 @@ tst$Classs[tst$Classs==""&(tolower(tst$before) %in% lowlettersdictionary.diff)]=
 
 ### this is where we use cachePLAIN cacheLETTERS (build them first..revised)
 
-
 ##an example of building "caches"
 
 A<-trn[which(trn$class=="PLAIN")-1,]
@@ -353,10 +334,6 @@ C<-unique(B)
 cacheLETTERS<-C
 save(cachePLAIN,file="cachePLAIN")
 save(cacheLETTERS,file="cacheLETTERS")
-
-
-
-
 
 ## this is where we classify chemistry abbreviations..basic example C02 is normalized to carbon dioxide...
 tst$before[tst$Classs=="LETTERS"&grepl("[₀₁₂₃₄₅₆₇₈₉]",tst$before)]
@@ -390,16 +367,9 @@ print("run findplainletters.R here")
 source("findplainletters.R")
 load("plainlettersguessT") ## need to run above
 
-
-
-
 tst$plainlettersguessT<-plainlettersguessT
 tst$Classs[tst$Classs==""&tst$plainlettersguessT!=""]=tst$plainlettersguessT[tst$Classs==""&tst$plainlettersguessT!=""]
 
-
-
-
-##now find plain with 's 've etc.
 ##10.26. more loose ends!!
 tst$Classs[grepl("'$|'ve$|'s$|'re$",tst$before)&tst$Classs==""]="PLAIN"
 tst$Classs[grepl("[A-Z]\\.",tst$before)&tst$Classs==""]="LETTERS"
@@ -407,17 +377,11 @@ tst$Classs[!grepl("[a-z]",tst$before)&grepl("[A-Z]",tst$before)&tst$Classs==""]=
 
 tst$Classs[!grepl("[a-zA-Z]",tst$before)&tst$Classs==""]="VERBATIM"
 
-
 tst$Classs[!(tst$before %in% CHEMS)&tst$Classs==""]="PLAIN"
 
 tst$Classs[grepl("^0[0-9]+$",tst$before)]="DIGIT"
 
 Classs<-tst$Classs
 save(Classs,file="Classs")
-
-
-
-
-
 
 

@@ -14,12 +14,11 @@ tst$rommaybeXT<-rommaybeXT
 
 i=1
 while(i<=n){
-
-    if(grepl("^[VXLCDM]$",tst$before[i])){
-        source("findromanXT.cond.R")
-    }
+  if(grepl("^[VXLCDM]$",tst$before[i])){
+    source("findromanXT.cond.R")
+  }
 #print(i)
-i=i+1
+  i=i+1
 }
 
 source("findroman2XT.R")

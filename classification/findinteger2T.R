@@ -13,24 +13,20 @@ dg<-nrow(trn[trn$intmaybe==1&trn$class=="DIGIT",])
 dc<-nrow(trn[trn$intmaybe==1&trn$class=="DECIMAL",])
 te<-nrow(trn[trn$intmaybe==1&trn$class=="TELEPHONE",])
 
-
 intprobs<-c(c/d,dt/d,dg/d,dc/d,te/d)
 ints<-c("CARDINAL","CARDINAL","DIGIT","DECIMAL","TELEPHONE")
 
 i=1
 
 while(i<=n){
-   if(tst$intmaybeT[i]==1){
-     
-        source("findintegerguessT.R")
-     
-   }
-print(i)
-i=i+1
+  if(tst$intmaybeT[i]==1){
+    source("findintegerguessT.R")
+  }
+  print(i)
+  i=i+1
 }
 
 tst$intguessT<-intguessT
 save(intguessT,file="intguessT")
 rm(intguessT)
-
 

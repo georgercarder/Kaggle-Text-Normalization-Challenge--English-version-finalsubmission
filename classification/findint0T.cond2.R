@@ -1,4 +1,4 @@
 #!/bin/Rscript
 
-   tst$intmaybe0T[i]=1
+tst$intmaybe0T[i]=1
        
