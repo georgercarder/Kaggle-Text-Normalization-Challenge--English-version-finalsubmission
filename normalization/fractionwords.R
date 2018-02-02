@@ -14,12 +14,10 @@
 a<-as.double(gsub("/.*","",f))
 b<-as.double(gsub(".*/","",f))
 
-
 n<-a
 source("numberwords.R")
 #print("worda is")
 #print(worda)
-
 
 n<-b
 source("thsnumberwords.R")
@@ -28,26 +26,27 @@ source("thsnumberwords.R")
 
 wordfrac<-stringi::stri_join(worda," ",wordb)
 
-
 if(b==1){
-wordfrac<-stringi::stri_join(worda)
+  wordfrac<-stringi::stri_join(worda)
 }
+
 if(b==2){
-wordfrac<-stringi::stri_join(worda," halves")
+  wordfrac<-stringi::stri_join(worda," halves")
 }
+
 wordfrac<-stringi::stri_join(worda," ",wordb)
 
 wordfrac<-gsub("  "," ",wordfrac)
 wordfrac<-gsub(" +$","",wordfrac)
+
 if(a==1&b==2){
-wordfrac<-"one half"
+  wordfrac<-"one half"
 }
 
 if((a==1&b!=1)&(a==1&b!=2)){
-wordfrac<-substr(wordfrac,1,nchar(wordfrac)-1)
-a=a+1
+  wordfrac<-substr(wordfrac,1,nchar(wordfrac)-1)
+  a=a+1
 }
-
 
 print(f)
 print("wordfrac is")

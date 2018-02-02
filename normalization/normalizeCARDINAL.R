@@ -13,35 +13,33 @@ CARBEFOREROMAN<-CARBEFORE[CARBEFORE %in% ROMANNUMERALS]
 NN<-length(CARBEFOREROMAN)
 i=1
 while(i<=NN){
+  CARBEFOREROMAN[i]=which(ROMANNUMERALS==CARBEFOREROMAN[i])
 
-CARBEFOREROMAN[i]=which(ROMANNUMERALS==CARBEFOREROMAN[i])
-
-print(i)
-i=i+1
+  print(i)
+  i=i+1
 }
 #return CARBEFORE
 
 CARBEFORE[CARBEFORE %in% ROMANNUMERALS]=CARBEFOREROMAN
-
 
 CARAFTER<-rep("",N)
 
 i=1
 
 while(i<=N){
-   if(!grepl("P",CARBEFORE[i])){
-        n<-as.double(CARBEFORE[i])
-        source("numberwords.R")
-        CARAFTER[i]=word
-    }
-    if(grepl("P",CARBEFORE[i])){
-        CARBEFORE[i]=gsub("P","",CARBEFORE[i])
-        n<-as.double(CARBEFORE[i])
-        source("numberwords.R")
-        CARAFTER[i]=stringi::stri_join("minus ",word)
-    }
-print(i)
-i=i+1
+  if(!grepl("P",CARBEFORE[i])){
+    n<-as.double(CARBEFORE[i])
+    source("numberwords.R")
+    CARAFTER[i]=word
+  }
+  if(grepl("P",CARBEFORE[i])){
+    CARBEFORE[i]=gsub("P","",CARBEFORE[i])
+    n<-as.double(CARBEFORE[i])
+    source("numberwords.R")
+    CARAFTER[i]=stringi::stri_join("minus ",word)
+  }
+  print(i)
+  i=i+1
 }
 
 CARAFTER<-gsub(" +$","",CARAFTER)

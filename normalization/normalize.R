@@ -83,9 +83,7 @@ tst$after[tst$after==""&grepl("^[a-zA-Z]+$",tst$before)]=A
 
 tst$after[tst$after==""]=tst$before[tst$after==""]
 
-
 tst$after<-gsub("^ +| +$","",gsub(" +"," ",tst$after))
 after<-tst$after
 save(after,file="after")
-
 

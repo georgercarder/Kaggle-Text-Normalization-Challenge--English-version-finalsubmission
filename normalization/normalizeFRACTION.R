@@ -20,24 +20,21 @@ FRACBEFORE.UN<-gsub("-","P",FRACBEFORE.UN)
 N<-length(FRACBEFORE.ST)
 FRACAFTER.ST<-rep("",N)
 
-
-
-
 i=1
 while(i<=N){
-   if(!grepl("P",FRACBEFORE.ST[i])){
-        f<-FRACBEFORE.ST[i]
-        source("fractionwords.R")
-        FRACAFTER.ST[i]=wordfrac
-    }
-    if(grepl("P",FRACBEFORE.ST[i])){
-        FRACBEFORE.ST[i]=gsub("P","",FRACBEFORE.ST[i])
-        f<-FRACBEFORE.ST[i]
-        source("fractionwords.R")
-        FRACAFTER.ST[i]=stringi::stri_join("minus ",wordfrac)
-    }
-print(i)
-i=i+1
+  if(!grepl("P",FRACBEFORE.ST[i])){
+    f<-FRACBEFORE.ST[i]
+    source("fractionwords.R")
+    FRACAFTER.ST[i]=wordfrac
+  }
+  if(grepl("P",FRACBEFORE.ST[i])){
+    FRACBEFORE.ST[i]=gsub("P","",FRACBEFORE.ST[i])
+    f<-FRACBEFORE.ST[i]
+    source("fractionwords.R")
+    FRACAFTER.ST[i]=stringi::stri_join("minus ",wordfrac)
+  }
+  print(i)
+  i=i+1
 }
 FRACAFTER.ST<-gsub(" +$","",FRACAFTER.ST)
 FRACAFTER.ST<-gsub("^ +","",FRACAFTER.ST)
@@ -62,49 +59,42 @@ FRACAFTER.UN<-rep("",NN)
 
 i=1
 while(i<=NN){
-        if(grepl("[0-9]",FRACBEFORE.UN1[i])){      
-        n<-as.double(FRACBEFORE.UN1[i])
-        source("numberwords.R")
-        wordA<-word
-        f<-unicodefractiontab[unicodefractiontab[,1]==FRACBEFORE.UN2[i],2]
-unicodefractiontab[unicodefractiontab[,1]=="½",2]
-        source("fractionwords.R")
-        if(FRACBEFORE.UN2[i]=="½"){
-        FRACAFTER.UN[i]=stringi::stri_join(wordA," and a half")
-        print(FRACAFTER.UN[i])
-        }
-        if(FRACBEFORE.UN2[i]!="½"){
-        FRACAFTER.UN[i]=stringi::stri_join(wordA," and ",wordfrac)
-        print(FRACAFTER.UN[i])        
-        }
-        }
-        if(!grepl("[0-9]",FRACBEFORE.UN1[i])){  
-            f<-unicodefractiontab[unicodefractiontab[,1]==FRACBEFORE.UN2[i],2]
-            unicodefractiontab[unicodefractiontab[,1]=="½",2]
-            source("fractionwords.R")
-            if(FRACBEFORE.UN2[i]=="½"){
-            FRACAFTER.UN[i]="one half"
-            print(FRACAFTER.UN[i])
-            }
-            if(FRACBEFORE.UN2[i]!="½"){
-            FRACAFTER.UN[i]=wordfrac
-            print(FRACAFTER.UN[i]) 
-            }     
-        }   
-print(i)
-i=i+1
+  if(grepl("[0-9]",FRACBEFORE.UN1[i])){      
+    n<-as.double(FRACBEFORE.UN1[i])
+    source("numberwords.R")
+    wordA<-word
+    f<-unicodefractiontab[unicodefractiontab[,1]==FRACBEFORE.UN2[i],2]
+    unicodefractiontab[unicodefractiontab[,1]=="½",2]
+    source("fractionwords.R")
+    if(FRACBEFORE.UN2[i]=="½"){
+      FRACAFTER.UN[i]=stringi::stri_join(wordA," and a half")
+      print(FRACAFTER.UN[i])
+    }
+    if(FRACBEFORE.UN2[i]!="½"){
+      FRACAFTER.UN[i]=stringi::stri_join(wordA," and ",wordfrac)
+      print(FRACAFTER.UN[i])        
+    }
+  }
+  if(!grepl("[0-9]",FRACBEFORE.UN1[i])){  
+    f<-unicodefractiontab[unicodefractiontab[,1]==FRACBEFORE.UN2[i],2]
+    unicodefractiontab[unicodefractiontab[,1]=="½",2]
+    source("fractionwords.R")
+    if(FRACBEFORE.UN2[i]=="½"){
+      FRACAFTER.UN[i]="one half"
+      print(FRACAFTER.UN[i])
+    }
+    if(FRACBEFORE.UN2[i]!="½"){
+      FRACAFTER.UN[i]=wordfrac
+      print(FRACAFTER.UN[i]) 
+    }     
+  }   
+  print(i)
+  i=i+1
 }
-
 
 FRACAFTER.UN<-gsub(" +$","",FRACAFTER.UN)
 FRACAFTER.UN<-gsub("^ +","",FRACAFTER.UN)
 
 FRACAFTER.UN<-gsub(" {2,}"," ",FRACAFTER.UN)
 tst$after[tst$Classs=="FRACTION"&grepl("[½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒]",tst$before)]=FRACAFTER.UN
-
-
-
-
-
-
 

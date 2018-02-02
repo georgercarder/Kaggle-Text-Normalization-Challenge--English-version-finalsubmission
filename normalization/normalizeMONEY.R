@@ -1,6 +1,5 @@
 #!/bin/Rscript
 
-
 CURRENCYA<-c("","$","£","€","¥")
 CURRENCYB<-c("","dollars","pounds","euros","yen")
 CURRENCY<-cbind(CURRENCYA,CURRENCYB)
@@ -18,38 +17,38 @@ N<-length(B)
 BAFT<-rep("",N)
 i=1
 while(i<=N){
-    if(!grepl("\\.",B2[i])){
-        n<-as.double(B2[i])
-        source("numberwords.R")
-        amt<-word
-        curr<-CURRENCY[B1[i]==CURRENCY[,1],2]
-        if(amt=="one"){
-            curr<-substr(curr,1,nchar(curr)-1)
-        }
-        BAFT[i]<-gsub(" +"," ",stringi::stri_join(amt," ",curr))
-        BAFT[i]<-gsub("^ +| +$","",BAFT[i])
+  if(!grepl("\\.",B2[i])){
+    n<-as.double(B2[i])
+    source("numberwords.R")
+    amt<-word
+    curr<-CURRENCY[B1[i]==CURRENCY[,1],2]
+    if(amt=="one"){
+      curr<-substr(curr,1,nchar(curr)-1)
     }
-    if(grepl("\\.",B2[i])){
-        n<-as.double(gsub("\\..*","",B2[i]))
-        source("numberwords.R")
-        amt<-word
-        n<-as.double(gsub(".*\\.","",B2[i]))
-        source("numberwords.R")
-        cc<-word
-        curr<-CURRENCY[B1[i]==CURRENCY[,1],2]
-        if(amt=="one"){
-            curr<-substr(curr,1,nchar(curr)-1)
-        }
-        chg<-CHANGE[B1[i]==CHANGE[,1],2]
-        if(amt=="cc"){
-            chg<-substr(chg,1,nchar(chg)-1)
-        }
-        BAFT[i]<-gsub(" +"," ",stringi::stri_join(amt," ",curr," and ",cc," ",chg))
-        BAFT[i]<-gsub("^ +| +$","",BAFT[i])
+    BAFT[i]<-gsub(" +"," ",stringi::stri_join(amt," ",curr))
+    BAFT[i]<-gsub("^ +| +$","",BAFT[i])
+  }
+  if(grepl("\\.",B2[i])){
+    n<-as.double(gsub("\\..*","",B2[i]))
+    source("numberwords.R")
+    amt<-word
+    n<-as.double(gsub(".*\\.","",B2[i]))
+    source("numberwords.R")
+    cc<-word
+    curr<-CURRENCY[B1[i]==CURRENCY[,1],2]
+    if(amt=="one"){
+      curr<-substr(curr,1,nchar(curr)-1)
+    }
+    chg<-CHANGE[B1[i]==CHANGE[,1],2]
+    if(amt=="cc"){
+      chg<-substr(chg,1,nchar(chg)-1)
+    }
+    BAFT[i]<-gsub(" +"," ",stringi::stri_join(amt," ",curr," and ",cc," ",chg))
+    BAFT[i]<-gsub("^ +| +$","",BAFT[i])
 
-    }
-print(i)
-i=i+1
+  }
+  print(i)
+  i=i+1
 }
 ##################################
 A1<-gsub("[ ,\\.0-9a-zA-Z]","",A)
@@ -68,52 +67,37 @@ N<-length(A)
 AAFT<-rep("",N)
 i=1
 while(i<=N){
-
-        n<-as.character(A2[i])
-        if(grepl("\\.",as.character(A2[i]))){
-        source("decimalwords.R")
-        amt<-wordec
-        }
-        if(!grepl("\\.",as.character(A2[i]))){
-        n<-as.double(n)
-        source("numberwords.R")
-        amt<-word
-        }
-        curr<-CURRENCY[A1[i]==CURRENCY[,1],2]
-        if(grepl("^Rs",A[i])){
-            curr<-"rupees"
-        }
-        if(grepl("won",A[i])){
-            curr<-"won"
-        }
-        if(grepl("NOK",A[i])){
-            curr<-"norwegian krones"
-        }
+  n<-as.character(A2[i])
+  if(grepl("\\.",as.character(A2[i]))){
+    source("decimalwords.R")
+    amt<-wordec
+  }
+  if(!grepl("\\.",as.character(A2[i]))){
+    n<-as.double(n)
+    source("numberwords.R")
+    amt<-word
+  }
+  curr<-CURRENCY[A1[i]==CURRENCY[,1],2]
+  if(grepl("^Rs",A[i])){
+    curr<-"rupees"
+  }
+  if(grepl("won",A[i])){
+    curr<-"won"
+  }
+  if(grepl("NOK",A[i])){
+    curr<-"norwegian krones"
+  }
        
-        mull<-A3[i]
-        AAFT[i]<-gsub(" +"," ",stringi::stri_join(amt," ",mull," ",curr))
-        AAFT[i]<-gsub("^ +| +$","",AAFT[i])
-    
-print(i)
-i=i+1
+  mull<-A3[i]
+  AAFT[i]<-gsub(" +"," ",stringi::stri_join(amt," ",mull," ",curr))
+  AAFT[i]<-gsub("^ +| +$","",AAFT[i])
+   
+  print(i)
+  i=i+1
 }
-
 
 tst$after[tst$Classs=="MONEY"&grepl("[a-zA-Z]",tst$before)]=AAFT
 
 tst$after[tst$Classs=="MONEY"&!grepl("[a-zA-Z]",tst$before)]=BAFT
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

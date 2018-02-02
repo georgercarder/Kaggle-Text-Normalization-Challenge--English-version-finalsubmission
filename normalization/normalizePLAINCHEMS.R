@@ -8,8 +8,7 @@ N<-nrow(tst[tst$Classs=="PLAINCHEMS",])
 
 i=1
 while(i<=N){
-
-     tst$after[tst$Classs=="PLAINCHEMS"][i]<-CHEMICALS[CHEMICALS[,1]==tst$before[tst$Classs=="PLAINCHEMS"][i],2][1]
+  tst$after[tst$Classs=="PLAINCHEMS"][i]<-CHEMICALS[CHEMICALS[,1]==tst$before[tst$Classs=="PLAINCHEMS"][i],2][1]
 #    j=1
  #   while(j<=m){
     
@@ -20,8 +19,8 @@ while(i<=N){
   #  j=j+1
    # }
 
-print(i)
-i=i+1
+  print(i)
+  i=i+1
 }
 
 

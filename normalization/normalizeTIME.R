@@ -1,6 +1,5 @@
 #!/bin/Rscript
 
-
 #case1
 TIMBEFB<-tst$before[tst$Classs=="TIME"&!grepl("[a-zA-Z]",tst$before)]
 TIMBEFB<-gsub(" +","",TIMBEFB)
@@ -22,7 +21,6 @@ ABEF<-TIMBEFB
 N<-length(ABEF)
 BBEF<-rep("",N)
 
-
 source("timeworder.R")
 
 TIMAFTB<-BBEF
@@ -41,15 +39,15 @@ TIMAFTAAAA<-rep("",N)
 i=1
 while(i<=N){
 #
-    if(!grepl("clock",TIMAFTAA[i])){
-        TIMAFTAAAA[i]<-stringi::stri_join(TIMAFTAA[i]," ",TIMAFTAAA[i])
-    }else{
-        TIMAFTAAAA[i]<-TIMAFTAA[i]
-    }
+  if(!grepl("clock",TIMAFTAA[i])){
+    TIMAFTAAAA[i]<-stringi::stri_join(TIMAFTAA[i]," ",TIMAFTAAA[i])
+  }else{
+    TIMAFTAAAA[i]<-TIMAFTAA[i]
+  }
 #
-TIMAFTAAAA[i]<-gsub("^ +| +$","",gsub(" +"," ",TIMAFTAAAA[i]))
-print(i)
-i=i+1
+  TIMAFTAAAA[i]<-gsub("^ +| +$","",gsub(" +"," ",TIMAFTAAAA[i]))
+  print(i)
+  i=i+1
 }
 #case2finished
 
@@ -57,5 +55,4 @@ TIMAFTB<-gsub("^ +","",gsub(" +$","",gsub(" {2,}"," ",TIMAFTB)))
 tst$after[tst$Classs=="TIME"&!grepl("[a-zA-Z]",tst$before)]=TIMAFTB
 TIMAFTAAAA<-gsub("^ +","",gsub(" +$","",gsub(" {2,}"," ",TIMAFTAAAA)))
 tst$after[tst$Classs=="TIME"&grepl("[a-zA-Z]",tst$before)]=TIMAFTAAAA
-
 

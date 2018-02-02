@@ -7,17 +7,13 @@ m<-nrow(BRIT.DIFFtab)
 lowerbefore<-tolower(tst$before)
 tst$lowerbefore<-lowerbefore
 
-
 N<-nrow(tst[tst$Classs=="PLAINBRITDIFF",])
 
 i=1
 while(i<=N){
-
-   
-    
-       WORD<-BRIT.DIFFtab[BRIT.DIFFtab[,1]==tst$lowerbefore[tst$Classs=="PLAINBRITDIFF"][i],2][1]
+  WORD<-BRIT.DIFFtab[BRIT.DIFFtab[,1]==tst$lowerbefore[tst$Classs=="PLAINBRITDIFF"][i],2][1]
         #if(!grepl("^[A-Z]",tst$before[tst$Classs=="PLAINBRITDIFF"][i])){
-           tst$after[tst$Classs=="PLAINBRITDIFF"][i]<-WORD
+  tst$after[tst$Classs=="PLAINBRITDIFF"][i]<-WORD
         #}
 ##check for capitalization
         #if(grepl("^[A-Z][a-z]",tst$before[tst$Classs=="PLAINBRITDIFF"][i])){
@@ -27,8 +23,8 @@ while(i<=N){
 
        # &!(tst$before %in% USAUK[,2])
   
-print(i)
-i=i+1
+  print(i)
+  i=i+1
 }
 
 tst$after[tst$Classs=="PLAINBRITDIFF"&tst$after==""]=tst$before[tst$Classs=="PLAINBRITDIFF"&tst$after==""]
